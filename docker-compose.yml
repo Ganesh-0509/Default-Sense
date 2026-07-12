@@ -1,0 +1,54 @@
+# ==========================================================
+# DefaultSense AI - Service Orchestration
+# NOTE: Service build contexts (backend/, frontend/) are added
+# in later phases. This file defines the data services now so
+# the databases are available from Phase 1 onward.
+# ==========================================================
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: defaultsense-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: defaultsense
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: defaultsense
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U defaultsense"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  neo4j:
+    image: neo4j:5-community
+    container_name: defaultsense-neo4j
+    restart: unless-stopped
+    environment:
+      NEO4J_AUTH: neo4j/changeme
+    ports:
+      - "7474:7474"   # HTTP browser
+      - "7687:7687"   # Bolt
+    volumes:
+      - neo4j_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://localhost:7474 || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  # ---- Added in later phases ----
+  # backend:
+  #   build: ./backend
+  #   ...
+  # frontend:
+  #   build: ./frontend
+  #   ...
+
+volumes:
+  postgres_data:
+  neo4j_data:
