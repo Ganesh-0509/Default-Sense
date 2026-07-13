@@ -99,7 +99,7 @@ All design docs live in [`docs/`](./docs):
 | 2 | Backend APIs + Authentication | ✅ Done |
 | 3 | Frontend shell | ✅ Done |
 | 4 | OCR module | ✅ Done |
-| 5 | Knowledge Graph | ⬜ Pending |
+| 5 | Knowledge Graph | ✅ Done |
 | 6 | AI / ML prediction engine | ⬜ Pending |
 | 7 | Dashboard & Reports | ⬜ Pending |
 | 8 | Deployment | ⬜ Pending |

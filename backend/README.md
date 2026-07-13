@@ -31,7 +31,13 @@ backend/app/
 | Customers | `GET /customers`, `GET /customers/search`, `GET /customers/{id}`, `POST /customers`, `PUT /customers/{id}`, `DELETE /customers/{id}` |
 | Loans | `GET /loans`, `GET /loans/{id}`, `GET /loans/{id}/repayments`, `POST /loans`, `PUT /loans/{id}` |
 | Documents & OCR | `POST /documents/upload`, `POST /ocr/process`, `GET /ocr/status`, `GET /documents/{id}`, `GET /documents/{id}/text` |
+| Knowledge Graph | `GET /graph/status`, `GET /graph/search`, `GET /graph/customer/{id}`, `GET /graph/risk/{id}` |
 | System | `GET /health`, `GET /` |
+
+**Knowledge Graph (Phase 5):** Neo4j via the official driver. `/graph/customer/{id}` returns the
+2-hop relationship subgraph (nodes + edges, ready for React Flow); `/graph/risk/{id}` computes a
+relationship-risk score from employer risk, industry risk, economic events, and connected-borrower
+defaults (shared guarantor) — the graph features the ML engine consumes in Phase 6.
 
 **OCR (Phase 4):** Tesseract via `pytesseract`. Upload an image document (PNG/JPG/TIFF/BMP/WEBP),
 then `POST /ocr/process` to extract text + confidence. The engine auto-detects the Tesseract
