@@ -18,12 +18,15 @@ export default function Login() {
 
   const from = location.state?.from?.pathname || "/dashboard";
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Public demo login for hackathon judges — no sign-up needed.
+  const DEMO_EMAIL = "demo@defaultsense.ai";
+  const DEMO_PASSWORD = "Demo@1234";
+
+  const doLogin = async (emailValue, passwordValue) => {
     setError("");
     setLoading(true);
     try {
-      const data = await login(email, password);
+      const data = await login(emailValue, passwordValue);
       setAuth(data.access_token, data.user);
       navigate(from, { replace: true });
     } catch (err) {
@@ -31,6 +34,17 @@ export default function Login() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    doLogin(email, password);
+  };
+
+  const handleDemo = () => {
+    setEmail(DEMO_EMAIL);
+    setPassword(DEMO_PASSWORD);
+    doLogin(DEMO_EMAIL, DEMO_PASSWORD);
   };
 
   return (
@@ -103,8 +117,26 @@ export default function Login() {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-xs text-slate-400">
-          Demo: admin@defaultsense.ai · ChangeMe123!
+        <div className="my-5 flex items-center gap-3">
+          <div className="h-px flex-1 bg-slate-200" />
+          <span className="text-xs uppercase tracking-wide text-slate-400">or</span>
+          <div className="h-px flex-1 bg-slate-200" />
+        </div>
+
+        <button
+          type="button"
+          onClick={handleDemo}
+          disabled={loading}
+          className="flex w-full items-center justify-center gap-2 rounded-lg border border-brand-600 py-2.5 text-sm font-semibold text-brand-700 transition-colors hover:bg-brand-50 disabled:opacity-60"
+        >
+          <ShieldCheck className="h-4 w-4" />
+          Explore the demo (for judges)
+        </button>
+
+        <p className="mt-4 text-center text-xs text-slate-400">
+          One-click demo access — no sign-up required.
+          <br />
+          {DEMO_EMAIL} · {DEMO_PASSWORD}
         </p>
       </div>
     </div>

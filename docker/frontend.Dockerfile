@@ -6,6 +6,11 @@ WORKDIR /app
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci
 COPY frontend/ ./
+# Optional: bake an absolute API base URL into the build (used for cloud deploys
+# where the backend is a separate origin, e.g. Railway). Left empty for local
+# docker-compose, where the app falls back to the same-origin "/api/v1" proxy.
+ARG VITE_API_URL=""
+ENV VITE_API_URL=$VITE_API_URL
 RUN npm run build
 
 # ---- Serve stage ----
