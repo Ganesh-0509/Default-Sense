@@ -34,7 +34,7 @@ export default function Sidebar() {
       </nav>
 
       <div className="px-6 py-4 text-xs text-brand-100/50 border-t border-white/10">
-        Phase 3 · Shell
+        DefaultSense AI · v1.0
       </div>
     </aside>
   );

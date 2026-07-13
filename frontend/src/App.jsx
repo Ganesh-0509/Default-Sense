@@ -9,7 +9,8 @@ import Predictions from "./pages/Predictions";
 import Alerts from "./pages/Alerts";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
-import PagePlaceholder from "./components/PagePlaceholder";
+import KnowledgeGraph from "./pages/KnowledgeGraph";
+import Documents from "./pages/Documents";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
@@ -33,9 +34,8 @@ export default function App() {
         <Route path="/reports" element={<Reports />} />
         <Route path="/alerts" element={<Alerts />} />
         <Route path="/settings" element={<Settings />} />
-        {/* Stubs — filled in during later phases */}
-        <Route path="/graph" element={<PagePlaceholder title="Knowledge Graph" phase={5} />} />
-        <Route path="/documents" element={<PagePlaceholder title="Documents & OCR" phase={4} />} />
+        <Route path="/graph" element={<KnowledgeGraph />} />
+        <Route path="/documents" element={<Documents />} />
       </Route>
 
       {/* Defaults */}
