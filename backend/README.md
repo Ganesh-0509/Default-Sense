@@ -32,7 +32,13 @@ backend/app/
 | Loans | `GET /loans`, `GET /loans/{id}`, `GET /loans/{id}/repayments`, `POST /loans`, `PUT /loans/{id}` |
 | Documents & OCR | `POST /documents/upload`, `POST /ocr/process`, `GET /ocr/status`, `GET /documents/{id}`, `GET /documents/{id}/text` |
 | Knowledge Graph | `GET /graph/status`, `GET /graph/search`, `GET /graph/customer/{id}`, `GET /graph/risk/{id}` |
+| AI Predictions | `GET /predictions/model`, `POST /predictions/run`, `GET /predictions/{id}`, `GET /predictions/customer/{id}`, `GET /predictions/portfolio`, `GET /predictions/{id}/shap`, `GET /predictions/{id}/features` |
 | System | `GET /health`, `GET /` |
+
+**AI Predictions (Phase 6):** loads the XGBoost+SHAP artifact from `models/saved_models/`,
+gathers multi-modal features for a customer (structured + behavioural + OCR/NLP + Neo4j graph),
+returns a 12-month PD, risk tier, recommendation, confidence, and SHAP risk drivers — stored to
+`ai_predictions` + `shap_explanations`. Train the model first: `python models/train.py`.
 
 **Knowledge Graph (Phase 5):** Neo4j via the official driver. `/graph/customer/{id}` returns the
 2-hop relationship subgraph (nodes + edges, ready for React Flow); `/graph/risk/{id}` computes a

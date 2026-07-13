@@ -31,12 +31,14 @@ pnpm-debug.log*
 # ---------- ML models / data ----------
 models/saved_models/*
 !models/saved_models/.gitkeep
+!models/saved_models/metrics.json
 *.pkl
 *.joblib
 *.h5
 datasets/raw/*
 datasets/processed/*
 datasets/ocr_documents/*
+datasets/synthetic/*
 !datasets/**/.gitkeep
 
 # ---------- OS / Editor ----------

@@ -26,6 +26,11 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 60
 
+    # ---- AI / ML (Phase 6) ----
+    # Directory holding saved model artifacts. If empty/relative, the predictor
+    # falls back to <repo>/models/saved_models. Env var: MODEL_PATH.
+    model_path: str = ""
+
     # ---- OCR (Phase 4) ----
     # Explicit path to the Tesseract binary. If empty, the engine auto-detects it
     # from PATH or common install locations. Env var: OCR_PATH.

@@ -112,7 +112,7 @@ We build **one phase at a time**. Each phase is completed, verified end-to-end, 
 | 3 | Frontend shell (routing, layout, auth screens) | ✅ Done |
 | 4 | OCR module (Tesseract) | ✅ Done |
 | 5 | Knowledge Graph (Neo4j integration + queries) | ✅ Done |
-| 6 | AI / ML prediction engine (XGBoost + SHAP) | ⬜ Pending |
+| 6 | AI / ML prediction engine (XGBoost + SHAP) | ✅ Done |
 | 7 | Dashboard & Reports | ⬜ Pending |
 | 8 | Deployment | ⬜ Pending |
 
