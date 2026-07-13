@@ -114,7 +114,7 @@ We build **one phase at a time**. Each phase is completed, verified end-to-end, 
 | 5 | Knowledge Graph (Neo4j integration + queries) | ✅ Done |
 | 6 | AI / ML prediction engine (XGBoost + SHAP) | ✅ Done |
 | 7 | Dashboard & Reports | ✅ Done |
-| 8 | Deployment | ⬜ Pending |
+| 8 | Deployment | ✅ Done |
 
 ---
 

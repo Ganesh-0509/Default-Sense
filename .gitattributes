@@ -1,0 +1,14 @@
+# Keep shell scripts LF-terminated so they run inside Linux containers
+# even when checked out on Windows.
+*.sh text eol=lf
+docker/backend-entrypoint.sh text eol=lf
+
+# Normalize text files
+*.py text
+*.js text
+*.jsx text
+*.sql text
+*.cypher text
+*.md text
+*.yml text
+*.yaml text

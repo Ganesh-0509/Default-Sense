@@ -102,25 +102,46 @@ All design docs live in [`docs/`](./docs):
 | 5 | Knowledge Graph | ✅ Done |
 | 6 | AI / ML prediction engine | ✅ Done |
 | 7 | Dashboard & Reports | ✅ Done |
-| 8 | Deployment | ⬜ Pending |
+| 8 | Deployment | ✅ Done |
 
 ---
 
 ## Getting Started
 
-> Detailed setup arrives with each phase. For now:
+### Option A — Full stack with Docker (recommended)
+
+One command brings up PostgreSQL, Neo4j, the FastAPI backend, and the React frontend.
+The backend auto-initializes the databases (schema + seed), seeds an admin, and trains
+the ML model on first boot.
 
 ```bash
-# 1. Clone
 git clone https://github.com/Ganesh-0509/Default-Sense.git
 cd Default-Sense
-
-# 2. Configure environment
-cp .env.example .env   # then edit values
-
-# 3. (Phases 1+) bring up services
-# docker-compose up -d
+cp .env.example .env          # optional: change secrets/credentials
+docker compose up -d --build  # first boot takes a few minutes (model training)
 ```
+
+- **Frontend:** http://localhost:8080
+- **API + Swagger docs:** http://localhost:8000/docs
+- **Neo4j browser:** http://localhost:7474
+- **Login:** `admin@defaultsense.ai` / `ChangeMe123!`
+
+### Option B — Local dev
+
+```bash
+docker compose up -d postgres neo4j          # databases only
+bash scripts/init_databases.sh               # schema + seed
+
+cd backend && python -m venv .venv && source .venv/Scripts/activate
+pip install -r requirements.txt
+python -m app.scripts.seed_admin
+python ../models/generate_synthetic.py && python ../models/train.py   # train model
+uvicorn app.main:app --reload                # http://localhost:8000/docs
+
+cd ../frontend && npm install && npm run dev # http://localhost:5173
+```
+
+See [`docs/15_Deployment_Guide.md`](./docs/15_Deployment_Guide.md) for cloud deployment.
 
 ---
 
