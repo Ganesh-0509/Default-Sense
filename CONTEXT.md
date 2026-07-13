@@ -109,7 +109,7 @@ We build **one phase at a time**. Each phase is completed, verified end-to-end, 
 | 0 | Repo scaffold + GitHub setup | ✅ Done |
 | 1 | Databases — PostgreSQL + Neo4j schema + seed data | ✅ Done |
 | 2 | Backend APIs + JWT Authentication | ✅ Done |
-| 3 | Frontend shell (routing, layout, auth screens) | ⬜ Pending |
+| 3 | Frontend shell (routing, layout, auth screens) | ✅ Done |
 | 4 | OCR module (Tesseract) | ⬜ Pending |
 | 5 | Knowledge Graph (Neo4j integration + queries) | ⬜ Pending |
 | 6 | AI / ML prediction engine (XGBoost + SHAP) | ⬜ Pending |
