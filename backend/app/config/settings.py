@@ -26,6 +26,14 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 60
 
+    # ---- OCR (Phase 4) ----
+    # Explicit path to the Tesseract binary. If empty, the engine auto-detects it
+    # from PATH or common install locations. Env var: OCR_PATH.
+    ocr_path: str = ""
+    # Directory where uploaded documents are stored (gitignored).
+    upload_dir: str = "uploads"
+    max_upload_mb: int = 10
+
     # ---- CORS ----
     frontend_url: str = "http://localhost:5173"
 

@@ -30,7 +30,14 @@ backend/app/
 | Auth | `POST /auth/login`, `POST /auth/logout`, `GET /auth/profile`, `POST /auth/change-password` |
 | Customers | `GET /customers`, `GET /customers/search`, `GET /customers/{id}`, `POST /customers`, `PUT /customers/{id}`, `DELETE /customers/{id}` |
 | Loans | `GET /loans`, `GET /loans/{id}`, `GET /loans/{id}/repayments`, `POST /loans`, `PUT /loans/{id}` |
+| Documents & OCR | `POST /documents/upload`, `POST /ocr/process`, `GET /ocr/status`, `GET /documents/{id}`, `GET /documents/{id}/text` |
 | System | `GET /health`, `GET /` |
+
+**OCR (Phase 4):** Tesseract via `pytesseract`. Upload an image document (PNG/JPG/TIFF/BMP/WEBP),
+then `POST /ocr/process` to extract text + confidence. The engine auto-detects the Tesseract
+binary from `OCR_PATH`, PATH, or common install locations. Install Tesseract on the host
+(`winget install UB-Mannheim.TesseractOCR`, or apt/brew). Uploaded files are stored under
+`uploads/` (gitignored).
 
 Every response uses the envelope `{ "success", "message", "data" }` (or `{ ..., "errors" }` on failure).
 Protected endpoints require a `Bearer` JWT; writes are role-gated (RBAC).
