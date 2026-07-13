@@ -57,14 +57,20 @@ git push origin main
 
 Railway may auto-create a service from the repo. Configure it as the **backend**:
 
-1. **Settings → Build**:
-   - **Builder:** Dockerfile
-   - **Dockerfile Path:** `docker/backend.Dockerfile`
-   - **Root Directory:** `/` (repo root — the Dockerfile copies `backend/`, `models/`, `database/`)
+1. **Point Railway at the Dockerfile** (critical — otherwise Railway uses its auto-detect
+   builder "Railpack" and fails with *"could not determine how to build the app"*, because the
+   Dockerfiles live under `docker/`, not the repo root). Easiest: add a service **Variable**
+   ```
+   RAILWAY_DOCKERFILE_PATH=docker/backend.Dockerfile
+   ```
+   (Equivalent UI path: **Settings → Build → Builder = Dockerfile**, then **Dockerfile Path =
+   `docker/backend.Dockerfile`**.) Leave **Root Directory** as `/` — the Dockerfile copies
+   `backend/`, `models/`, `database/` relative to the repo root.
 2. **Settings → Networking → Generate Domain** → set **target port `8000`**.
    Copy the generated URL, e.g. `https://defaultsense-backend.up.railway.app`.
 3. **Variables** (Raw Editor — paste and edit):
    ```
+   RAILWAY_DOCKERFILE_PATH=docker/backend.Dockerfile
    DATABASE_URL=${{Postgres.DATABASE_URL}}
    NEO4J_URI=neo4j+s://xxxxxxxx.databases.neo4j.io
    NEO4J_USERNAME=neo4j
@@ -84,12 +90,13 @@ Railway may auto-create a service from the repo. Configure it as the **backend**
 ## Step 4 — Frontend service (3 min)
 
 1. In the project: **+ New** → **GitHub Repo** → same repo (creates a second service).
-2. **Settings → Build**:
-   - **Builder:** Dockerfile
-   - **Dockerfile Path:** `docker/frontend.Dockerfile`
-   - **Root Directory:** `/`
-3. **Variables** — this bakes the backend URL into the build:
+2. **Point Railway at the Dockerfile** (same reason as the backend) — add the variable in the
+   next step, or **Settings → Build → Builder = Dockerfile**, **Dockerfile Path =
+   `docker/frontend.Dockerfile`**. Leave **Root Directory** as `/`.
+3. **Variables** — `RAILWAY_DOCKERFILE_PATH` selects the Dockerfile, `VITE_API_URL` bakes the
+   backend URL into the build:
    ```
+   RAILWAY_DOCKERFILE_PATH=docker/frontend.Dockerfile
    VITE_API_URL=https://<backend>.up.railway.app/api/v1
    ```
    (Railway passes service variables as Docker build args, so `ARG VITE_API_URL` in the
