@@ -101,7 +101,7 @@ All design docs live in [`docs/`](./docs):
 | 4 | OCR module | ✅ Done |
 | 5 | Knowledge Graph | ✅ Done |
 | 6 | AI / ML prediction engine | ✅ Done |
-| 7 | Dashboard & Reports | ⬜ Pending |
+| 7 | Dashboard & Reports | ✅ Done |
 | 8 | Deployment | ⬜ Pending |
 
 ---

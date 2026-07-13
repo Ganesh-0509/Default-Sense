@@ -33,7 +33,13 @@ backend/app/
 | Documents & OCR | `POST /documents/upload`, `POST /ocr/process`, `GET /ocr/status`, `GET /documents/{id}`, `GET /documents/{id}/text` |
 | Knowledge Graph | `GET /graph/status`, `GET /graph/search`, `GET /graph/customer/{id}`, `GET /graph/risk/{id}` |
 | AI Predictions | `GET /predictions/model`, `POST /predictions/run`, `GET /predictions/{id}`, `GET /predictions/customer/{id}`, `GET /predictions/portfolio`, `GET /predictions/{id}/shap`, `GET /predictions/{id}/features` |
+| Dashboard | `GET /dashboard/summary`, `/dashboard/risk-distribution`, `/dashboard/high-risk`, `/dashboard/trends` |
+| Alerts | `GET /alerts`, `GET /alerts/{id}`, `PUT /alerts/{id}/read` |
+| Reports | `GET /reports/portfolio`, `/reports/risk`, `/reports/customer/{id}`, `/reports/export/csv`, `/reports/export/pdf` |
 | System | `GET /health`, `GET /` |
+
+**Dashboard & Reports (Phase 7):** KPI/risk-distribution/high-risk/trends aggregations,
+alert management, and portfolio/customer reports with CSV + PDF (reportlab) export.
 
 **AI Predictions (Phase 6):** loads the XGBoost+SHAP artifact from `models/saved_models/`,
 gathers multi-modal features for a customer (structured + behavioural + OCR/NLP + Neo4j graph),

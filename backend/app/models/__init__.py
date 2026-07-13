@@ -1,5 +1,6 @@
 """ORM models mapped onto the Phase 1 PostgreSQL schema."""
 
+from app.models.alert import Alert
 from app.models.branch import Branch
 from app.models.customer import Customer
 from app.models.document import Document, OCRResult
@@ -18,4 +19,5 @@ __all__ = [
     "OCRResult",
     "AIPrediction",
     "ShapExplanation",
+    "Alert",
 ]

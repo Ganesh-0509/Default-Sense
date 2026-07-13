@@ -27,6 +27,9 @@ shap>=0.44
 imbalanced-learn>=0.12
 joblib>=1.3
 
+# Reports (Phase 7)
+reportlab>=4.0
+
 # Testing
 pytest>=8.0
 httpx>=0.27
