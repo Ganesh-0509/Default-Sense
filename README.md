@@ -96,7 +96,7 @@ All design docs live in [`docs/`](./docs):
 | --- | --- | --- |
 | 0 | Repo scaffold + GitHub setup | ✅ Done |
 | 1 | Databases (PostgreSQL + Neo4j schema) | ✅ Done |
-| 2 | Backend APIs + Authentication | ⬜ Pending |
+| 2 | Backend APIs + Authentication | ✅ Done |
 | 3 | Frontend shell | ⬜ Pending |
 | 4 | OCR module | ⬜ Pending |
 | 5 | Knowledge Graph | ⬜ Pending |
