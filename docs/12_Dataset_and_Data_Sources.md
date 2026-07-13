@@ -164,6 +164,22 @@ For hackathon demonstrations, generate synthetic data for:
 
 This ensures realistic demos without exposing sensitive banking data.
 
+## 7.1 Synthetic Data Design for the 90% Target
+
+The synthetic generator must be designed so a strong model can *genuinely* reach the target bundle (see `03_AI_ML_Design.md` §13). Two rules:
+
+**Rule 1 — Inject real, learnable signal across all four layers.** Default must be a genuine function of the features, e.g.:
+* Structured: high DTI / rising credit utilization → higher default probability.
+* Behavioural: increasing EMI-delay velocity, declining transaction inflow → higher default.
+* Unstructured: negative officer-note sentiment, negative employer/industry news → higher default.
+* Graph: employer in a stressed industry, shared-guarantor exposure, high regional risk → higher default.
+
+A model can only hit 90% if the signal is actually present in the data.
+
+**Rule 2 — Use a realistic-but-learnable default rate of ~25–35%** (not the ~8–10% of raw public data). More balanced classes make a 90% accuracy figure *meaningful* rather than a freebie. This is defensible precisely because the data is synthetic.
+
+**Guardrail:** do not make the signal so clean that the model scores 0.98–0.99 AUC — that reads as leakage/overfitting to judges. Add realistic noise and overlapping cases so ROC-AUC lands in the credible **0.90–0.94** band.
+
 ---
 
 # 8. Data Pipeline
